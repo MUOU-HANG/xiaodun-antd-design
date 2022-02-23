@@ -34,9 +34,10 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
         ACCESS_TOKEN: ${{ secrets.XDAD_DEPLOY_KEY }}
+        GITHUB_TOKEN: ${{ secrets.XDAD_DEPLOY_KEY }}
         BRANCH: main
         FOLDER: docs-dist
-        REPOSITORY_NAME: MUOU-HANG/xdad.github.io
+        REPOSITORY_NAME: MUOU-HANG/muou-hang.github.io
         TARGET_FOLDER: /
 
       env:
