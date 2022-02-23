@@ -1,0 +1,44 @@
+@import 'https://at.alicdn.com/t/font_3173080_c6j66l1i91t.css';
+.xdad-advance .xdad-advance-btn {
+  margin-bottom: 10px;
+  height: 30px;
+  width: 96px;
+  background-color: #F4F5FA;
+  font-size: 12px;
+  line-height: normal;
+  float: inline-end;
+}
+.xdad-advance .left {
+  float: right;
+}
+.xdad-advance .xdad-advance-seach {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.xdad-advance .xdad-advance-form {
+  background-color: #F4F5FA;
+  padding: 20px 20px 10px 20px;
+}
+.xdad-advance .xdad-advance-form-btns {
+  margin-left: auto;
+}
+.xdad-advance .xdad-advance-form-item {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.xdad-advance .xdad-advance-form-item > * {
+  width: 100%;
+}
+.clearfix:after {
+  /*伪元素是行内元素 正常浏览器清除浮动方法*/
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  *zoom: 1;
+  /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+}

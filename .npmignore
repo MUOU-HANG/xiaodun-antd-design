@@ -1,0 +1,10 @@
+src
+.umirc.ts
+node_modules
+docs
+.editorconfig
+tsconfig.json
+.fatherrc.ts
+.prettierignore
+.prettierrc.js
+typings.d.ts
