@@ -34,7 +34,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4.2.5
       with:
         token: ${{ secrets.XDAD_DEPLOY_KEY }}
-        ssh-key: ${{ secrets.XDAD_DEPLOY_KEY }}
+        # ssh-key: ${{ secrets.XDAD_DEPLOY_KEY }}
         branch: doc-site
         folder: docs-dist
         repository-name: MUOU-HANG/muou-hang.github.io
