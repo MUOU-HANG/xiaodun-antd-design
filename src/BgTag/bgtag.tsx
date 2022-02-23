@@ -38,14 +38,18 @@ interface TagProps {
   color?: string;
   card?: boolean;
   point?: boolean;
-  children?: string,
-  text?: string
+  text?: string,
+  style?: any,
+  className?: any,
 }
-const Tag: FC<TagProps> = ({ color = '#000', card = false, point = true, children, text = '默认' }) => {
+const Tag: FC<TagProps> = ({ color = '#000', card = false, point = true, children, text = '默认', className,style}) => {
+  // console.log(className);
+  // const _className = typeof className === 'object';
+
   return (
     <span
-      className={card ? 'xdad-tag-card' : 'xdad-tag'}
-      style={{ backgroundColor: changeHexToRgba(color, 0.1) }}
+      className={[card ? 'xdad-tag-card' : 'xdad-tag',className].join(' ')}
+      style={{ backgroundColor: changeHexToRgba(color, 0.1),...style}}
     >
       {point && (
         <span
@@ -56,7 +60,7 @@ const Tag: FC<TagProps> = ({ color = '#000', card = false, point = true, childre
 
       <span
         className={card ? 'xdad-tag-card-text' : 'xdad-tag-text'}
-        style={{ color: `${color}` }}
+        style={{ color: `${color}`, fontWeight: 200 }}
       >
         {children ?? text}
       </span>

@@ -2,11 +2,6 @@ import { DatePicker, Input, Select } from 'antd';
 import React, { memo } from 'react';
 import { AdvancedSearch } from 'xdad';
 
-declare module 'react' {
-  interface HTMLProps<T> {
-     simple?:boolean;
- }
-}
 
 const Index = () => {
   const { reset } = AdvancedSearch;

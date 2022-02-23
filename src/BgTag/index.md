@@ -1,5 +1,5 @@
 ---
-name: Tag 底色标签
+name: BgTag 底色标签
 
 nav:
   title: 组件
@@ -11,9 +11,9 @@ group:
 
 ---
 
-# Tag 底色标签
+# BgTag 底色标签
 
-Tag 标签，一般用于展示状态。
+BgTag 标签，一般用于展示状态。
 
 ## 代码演示
 

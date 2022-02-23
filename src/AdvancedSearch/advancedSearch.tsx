@@ -9,9 +9,9 @@ interface AdvancedSearchProps {
   children?: ReactElement[],
   showAdvanced?: boolean,
   filterEmpty?: boolean,
-  reset: () => void,
-  onKeyEnter: (currentChange: Values, allSearchValues: Values, simpleValues: Values, advancedValues: Values) => void;
-  onChange: (currentChange: Values, allSearchValues: Values, simpleValues: Values, advancedValues: Values) => void;
+  reset?: () => void,
+  onKeyEnter: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
+  onChange: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
   onSearch?: (allValues: Values, simpleValues: Values, advancedValues: Values) => void;
 }
 type SearchType = ReactElement<any, string | JSXElementConstructor<unknown>>[];
@@ -58,16 +58,15 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({ children, formProps, showAdva
     return SourceData;
   };
 
-
   // 合并搜索条件
   const mergeSearchValues = (_filterEmpty: boolean) => {
-    const allSearchValues: object = {
+    const allValues: object = {
       ...simpleForm.getFieldsValue(),
       ...advancedForm.getFieldsValue()
     };
-    console.log(allSearchValues, '1234');
+    console.log(allValues, '1234');
 
-    return _filterEmpty ? filterEmptyData(allSearchValues) : allSearchValues;
+    return _filterEmpty ? filterEmptyData(allValues) : allValues;
   };
 
   // 搜索渲染
@@ -94,31 +93,30 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({ children, formProps, showAdva
 
   // 高级搜索
   const onInternalSearch = () => {
-    const allSearchValues = mergeSearchValues(filterEmpty);
+    const allValues = mergeSearchValues(filterEmpty);
     const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
     const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
-    onSearch?.(simpleValues, advancedValues, allSearchValues);
+    onSearch?.(simpleValues, advancedValues, allValues);
   };
 
   // 实时搜索
   const onInternalChange = (changedValues: object) => {
-    const allSearchValues = mergeSearchValues(filterEmpty);
+    const allValues = mergeSearchValues(filterEmpty);
     const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
     const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
-    onChange?.(changedValues, allSearchValues, simpleValues, advancedValues);
+    onChange?.(changedValues, allValues, simpleValues, advancedValues);
   };
 
   // 回车搜索
   const onInternalKeyEnter = (e: any) => {
-    console.log(e.target.dataset);
-    const allSearchValues = mergeSearchValues(filterEmpty);
+    const allValues = mergeSearchValues(filterEmpty);
     const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
     const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
     const currentValues = {};
     const key = Object.keys(simpleValues).filter(key => key === e.target?.dataset?.name)[0];
     currentValues[key] = simpleValues[key];
     if (e.keyCode === 13) {
-      onKeyEnter(currentValues, allSearchValues, simpleValues, advancedValues);
+      onKeyEnter(currentValues, allValues, simpleValues, advancedValues);
     }
   };
 
@@ -126,7 +124,10 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({ children, formProps, showAdva
     <div className={'xdad-advance clearfix'}>
       <div className="xdad-advance-seach"
         onKeyDown={onInternalKeyEnter}>
-        <Form layout="inline" form={simpleForm} onValuesChange={onInternalChange}>
+        <Form
+          layout="inline"
+          form={simpleForm}
+          onValuesChange={onInternalChange}>
           {searchRender('simple')}
         </Form>
         {showAdvanced && <Button

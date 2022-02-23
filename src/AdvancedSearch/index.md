@@ -24,6 +24,7 @@ group:
 | ------------ | ---------------- | --------- | -------- | ------ |
 | formProps    | Form 表单API     | FormProps | N        | {}     |
 | showAdvanced | 是否展示高级搜索 | boolean   | N        | false  |
+| filterEmpty | 是否过滤undefined/null空值 | boolean   | N        | true  |
 
 
 
@@ -31,9 +32,9 @@ group:
 
 | 属性       | 说明             | 类型                                               | 是否必填 | 默认值 |
 | :--------- | ---------------- | -------------------------------------------------- | -------- | ------ |
-| onChange   | 快捷搜索实时回调 | (currentChange: object, allValues: object) => void | N        | -      |
-| onSearch   | 搜索回调         | (values:object)=>void                              | N        | -      |
-| onKeyEnter | 快捷搜索回车回调 | (values:object)=>void                              | N        | -      |
+| onChange   | 快捷搜索实时回调 | (currentChange, allValues, simpleValues, advancedValues) => void | N        | -      |
+| onSearch   | 搜索回调         | (allValues, simpleValues, advancedValues) => void                              | N        | -      |
+| onKeyEnter | 快捷搜索回车回调 | (currentChange, allValues, simpleValues, advancedValues) => void                             | N        | -      |
 | reset | 重置高级搜索数据 | ()=>void                              | N        | -      |
 
 

@@ -4,10 +4,10 @@ import './index.less';
 declare type Values = object;
 interface AdvancedSearchProps {
     formProps?: FormProps;
-    children: ReactElement[];
-    showAdvanced: boolean;
-    filterEmpty: boolean;
-    reset: () => void;
+    children?: ReactElement[];
+    showAdvanced?: boolean;
+    filterEmpty?: boolean;
+    reset?: () => void;
     onKeyEnter: (currentChange: Values, allSearchValues: Values, simpleValues: Values, advancedValues: Values) => void;
     onChange: (currentChange: Values, allSearchValues: Values, simpleValues: Values, advancedValues: Values) => void;
     onSearch?: (allValues: Values, simpleValues: Values, advancedValues: Values) => void;
