@@ -23,7 +23,7 @@ group:
 | 属性         | 说明             | 类型      | 是否必填 | 默认值 |
 | ------------ | ---------------- | --------- | -------- | ------ |
 | formProps    | Form 表单API     | FormProps | N        | {}     |
-| showAdvanced | 是否展示高级搜索 | boolean   | N        | false  |
+| showAdvanced | 是否展示高级搜索 | boolean   | N        | true  |
 | filterEmpty | 是否过滤undefined/null空值 | boolean   | N        | true  |
 
 
