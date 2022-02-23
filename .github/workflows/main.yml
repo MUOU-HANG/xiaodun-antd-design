@@ -40,7 +40,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.XDAD_DEPLOY_KEY }}
         BRANCH: master
         FOLDER: docs-dist
-        REPOSITORY_NAME: MUOU-HANG/MUOU-HANG.github.io
+        REPOSITORY_NAME: MUOU-HANG/xdad.github.io
         TARGET_FOLDER: /
 
       env:
