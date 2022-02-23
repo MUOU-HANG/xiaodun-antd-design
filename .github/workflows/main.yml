@@ -41,7 +41,7 @@ jobs:
         BRANCH: master
         FOLDER: docs-dist
         REPOSITORY_NAME: MUOU-HANG/MUOU-HANG.github.io
-        TARGET_FOLDER: docs-dist
+        TARGET_FOLDER: /
 
       env:
         CI: true
