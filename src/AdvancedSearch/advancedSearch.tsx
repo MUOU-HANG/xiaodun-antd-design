@@ -130,14 +130,14 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({ children, formProps, showAdva
           onValuesChange={onInternalChange}>
           {searchRender('simple')}
         </Form>
-        {showAdvanced && <Button
+        {showAdvanced && <div
           className={'xdad-advance-btn'}
           onClick={() => setIsAdvance(!isAdvance)}>
           高级搜索
           {isAdvance ?
             <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', display: 'inline-block' }} />
             : <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', transform: 'rotate(180deg)', display: 'inline-block' }} />}
-        </Button>}
+        </div>}
       </div>
       {isAdvance && showAdvanced &&
         <Form
