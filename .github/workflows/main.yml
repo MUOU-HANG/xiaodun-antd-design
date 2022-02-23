@@ -10,35 +10,31 @@ name: XDAD_CI/CD
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }} # runs a test on Ubuntu, Windows and macOS
-
-    strategy:
-      matrix:
-        node: [12]
-        os: [macOS-11.2.3]
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 15.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 15.x
+    - name: Checkout main
+      uses: actions/checkout@main
 
-    - name: yarn install, build
+    - name: Use Node.js 15.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+
+    - name:  Build docs
       run: |
-        yarn
-        yarn build
+        npm install && npm run docs:build
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
         ACCESS_TOKEN: ${{ secrets.XDAD_DEPLOY_KEY }}
-        BRANCH: master
+        BRANCH: main
         FOLDER: docs-dist
         REPOSITORY_NAME: MUOU-HANG/xdad.github.io
         TARGET_FOLDER: /
