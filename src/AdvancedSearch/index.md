@@ -35,7 +35,7 @@ group:
 | onChange   | 快捷搜索实时回调 | (currentChange, allValues, simpleValues, advancedValues) => void | N        | -      |
 | onSearch   | 搜索回调         | (allValues, simpleValues, advancedValues) => void                              | N        | -      |
 | onKeyEnter | 快捷搜索回车回调 | (currentChange, allValues, simpleValues, advancedValues) => void                             | N        | -      |
-| reset | 重置高级搜索数据 | ()=>void                              | N        | -      |
+| reset | 重置高级搜索数据 | ()=>void     `const {rest} = AdvancedSearch` | N        | -      |
 
 
 

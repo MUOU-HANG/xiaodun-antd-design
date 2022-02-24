@@ -1,4 +1,4 @@
-import { DatePicker, Input, Select } from 'antd';
+import { Button, DatePicker, Input, Select } from 'antd';
 import React, { memo } from 'react';
 import { AdvancedSearch } from 'xdad';
 
@@ -36,6 +36,7 @@ const Index = () => {
         <Select data-name="testy" data-simple />
         <DatePicker data-name="testc" style={{width:'100%'}} data-simple/>
       </AdvancedSearch>
+      <Button onClick={reset} style={{marginTop: 10}}>高级搜索外重置</Button>
     </>
   );
 };
