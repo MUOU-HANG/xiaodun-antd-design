@@ -43,8 +43,6 @@ interface TagProps {
   className?: any,
 }
 const Tag: FC<TagProps> = ({ color = '#000', card = false, point = true, children, text = '默认', className,style}) => {
-  // console.log(className);
-  // const _className = typeof className === 'object';
 
   return (
     <span

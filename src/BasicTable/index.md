@@ -28,5 +28,5 @@ group:
 #### BasicTable Item
 | 属性      | 说明                      | 类型          | 是否必填 | 默认值 |
 | --------- | ------------------------- | ------------- | -------- | ------ |
-| itemProps | Form.Item 表单Item API    | FormItemProps | N        | {}     |
+| itemprops | Form.Item 表单Item API    | Formitemprops | N        | {}     |
 | data-name | 与Form.Item的name属性一致 | string        | N        | -      |

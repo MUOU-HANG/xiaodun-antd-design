@@ -1,44 +1,44 @@
-import { Button, DatePicker, Input, Select } from 'antd';
-import React, { memo } from 'react';
+import { DatePicker, Input, Select } from 'antd';
+import React from 'react';
 import { AdvancedSearch } from 'xdad';
 
 
 const Index = () => {
-  const { reset } = AdvancedSearch;
+  const { QuickForm, AdvancedForm } = AdvancedSearch;
+  const handleChange = (current, allValues, quickValues, advancedValues) => {
+    console.log(current, allValues, quickValues, advancedValues);
+
+  };
+
+  const handleKeyEnter = (current, allValues, quickValues, advancedValues) => {
+    console.log(current, allValues, quickValues, advancedValues);
+  };
 
   return (
     <>
       <AdvancedSearch
-        formProps={{
-          initialValues:{name:'张三'}
-        }}
-        // filterEmpty={false}
-        // showAdvanced={false}
-        onKeyEnter={(a,b,c,d) => {
-          console.log(a,b,c,d);
-        }}
-        onSearch={(a,b,c) => {
-          console.log(a,b,c);
-        }}
-
-        onChange={(a,b,c,d) => {
-          console.log(a,b,c,d);
+        onSearch={(a, b, c) => {
+          console.log('search:', a, b, c);
         }}
       >
-        <Input data-name="name" placeholder='请输入姓名' />
-        <Input data-name="test2" />
-        <Select data-name="test3"  />
-        <DatePicker data-name="test4" style={{width:'100%'}} />
-        <Select data-name="test5" />
-        <DatePicker data-name="test6" style={{ width: '100%' }} />
-        <Input data-name="testa" data-simple />
-        <Select data-name="testr" data-simple />
-        <Select data-name="testy" data-simple />
-        <DatePicker data-name="testc" style={{width:'100%'}} data-simple/>
+        <QuickForm
+          onKeyEnter={handleKeyEnter}
+          onChange={handleChange}
+        >
+          <DatePicker data-name="quick1" style={{ width: '100%' }} />
+          <Input data-itemprops={{ name: 'quick2', }} />
+          <Select data-name="quick3" />
+        </QuickForm>
+        <AdvancedForm initialValues={{ name: '1234' }}>
+          <DatePicker data-name="advanced1" style={{ width: '100%' }} />
+          <Input data-itemprops={{ name: 'advanced2', }} />
+          <Select data-name="advanced3" />
+        </AdvancedForm>
+        <DatePicker data-name="quick-simple" data-simple style={{ width: '100%' }} />
+        <Select data-name="advanced" />
       </AdvancedSearch>
-      <Button onClick={reset} style={{marginTop: 10}}>高级搜索外重置</Button>
     </>
   );
 };
 
-export default memo(Index);
+export default Index;

@@ -1,17 +1,21 @@
-import { Button, Form, FormProps, message } from 'antd';
-import React, { FC, JSXElementConstructor, ReactElement, useEffect, useState } from 'react';
+import { FormProps, message } from 'antd';
+import React, { createContext, FC, JSXElementConstructor, ReactElement, useContext, useEffect, useState } from 'react';
+import AdvancedForm from './advancedForm';
 import './index.less';
+import QuickForm from './quickForm';
 
 type Values = object;
 
 interface AdvancedSearchProps {
   formProps?: FormProps
-  children?: ReactElement[],
   showAdvanced?: boolean,
   filterEmpty?: boolean,
+  children: any,
+  className?: any,
+  style?:any,
   reset?: () => void,
-  onKeyEnter: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
-  onChange: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
+  onKeyEnter?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
+  onChange?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
   onSearch?: (allValues: Values, simpleValues: Values, advancedValues: Values) => void;
 }
 type SearchType = ReactElement<any, string | JSXElementConstructor<unknown>>[];
@@ -19,142 +23,113 @@ type SearchType = ReactElement<any, string | JSXElementConstructor<unknown>>[];
 export const reset = () => {
   document.getElementById('xdad-advanced-reset')?.click();
 };
+export const AdvancedContext: any = createContext({});
 
-const AdvancedSearch: FC<AdvancedSearchProps> = ({ children, formProps, showAdvanced = true, filterEmpty = true, onKeyEnter, onChange, onSearch }) => {
+const AdvancedSearch: FC<AdvancedSearchProps> = ({
+  children,
+  showAdvanced = true,
+  filterEmpty = true,
+  style,
+  className,
+  formProps,
+  onSearch,
+  onChange,
+  onKeyEnter
+}) => {
 
-  const [advancedForm] = Form.useForm();
-  const [simpleForm] = Form.useForm();
+  const [allValues, setAllValues] = useState<Values>({});
+  const [quickValues, setQuickValues] = useState<Values>({});
+  const [advancedValues, setAdvancedValues] = useState<Values>({});
   const [isAdvance, setIsAdvance] = useState(false);
-  const [simpleSearch, setSimpleSearch] = useState<SearchType>([]);
-  const [advancedSearch, setAdvancedSearch] = useState<SearchType>([]);
+  const [quickForm, setQuickForm] = useState<SearchType>([]);
+  const [advancedForm, setAdvancedForm] = useState<SearchType>([]);
+  const [advancedProps, setAdvancedProps] = useState();
+  const [quickProps, setQuickProps] = useState();
+  const store = {
+    allValues, setAllValues,
+    quickValues, setQuickValues,
+    advancedValues, setAdvancedValues
+  };
 
   useEffect(() => {
     classifySearch();
   }, []);
 
+
   // 搜索分类
   const classifySearch = () => {
     const _simpleSearch: SearchType = [];
     const _advancedSearch: SearchType = [];
-    children?.forEach((child) => {
-      child.props['data-simple']
-        ? _simpleSearch.push(child)
-        : _advancedSearch.push(child);
-    });
-    if (_simpleSearch.length > 4) {
-      message.info('建议快捷搜索控制在4个以内！');
-    }
-    setAdvancedSearch(_advancedSearch);
-    setSimpleSearch(_simpleSearch);
-  };
-
-  // 过滤空值 undefined|null
-  const filterEmptyData = (SourceData: Values) => {
-    for (const [key, value] of Object.entries(SourceData)) {
-      if (!value) {
-        delete SourceData[key];
+    // 分类实现
+    const classify = (child:any) => {
+      const name = child?.type?.name;
+      if (name === 'QuickForm') {
+        const { children: props_child = [], ...rest } = child?.props || {};
+        setQuickProps(rest);
+        const propsPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
+        _simpleSearch.push(...propsPropsChildren);
       }
-    }
-    return SourceData;
-  };
-
-  // 合并搜索条件
-  const mergeSearchValues = (_filterEmpty: boolean) => {
-    const allValues: object = {
-      ...simpleForm.getFieldsValue(),
-      ...advancedForm.getFieldsValue()
+      if (name === 'AdvancedForm') {
+        const { children: props_child = [], ...rest } = child?.props || {};
+        setAdvancedProps(rest);
+        const advancedPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
+        name === 'AdvancedForm' && _advancedSearch.push(...advancedPropsChildren);
+      }
+      if (name !== 'QuickForm' && name !== 'AdvancedForm') {
+        child.props['data-simple']
+          ? _simpleSearch.push(child)
+          : _advancedSearch.push(child);
+      }
     };
-    console.log(allValues, '1234');
-
-    return _filterEmpty ? filterEmptyData(allValues) : allValues;
-  };
-
-  // 搜索渲染
-  const searchRender = (type: 'advanced' | 'simple') => {
-    const renderData = type === 'advanced' ? advancedSearch : simpleSearch;
-    return renderData?.map((child, index) => {
-      const type: any = child.type;
-      const name = child.props['data-name'];
-      const itemProps = child.props['data-itemProps'];
-      const isSelect = typeof type === 'object' && type?.render.name === 'InternalSelect';
-      console.log(isSelect);
-
-      return (
-        <Form.Item
-          key={name ?? index}
-          name={name}
-          {...itemProps}
-          style={{ width: isSelect ? '160px' : '240px' }}
-          className="xdad-advance-form-item"
-        >
-          {child}
-        </Form.Item>
-      );
-    });
-  };
-
-  // 高级搜索
-  const onInternalSearch = () => {
-    const allValues = mergeSearchValues(filterEmpty);
-    const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
-    const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
-    onSearch?.(simpleValues, advancedValues, allValues);
-  };
-
-  // 实时搜索
-  const onInternalChange = (changedValues: object) => {
-    const allValues = mergeSearchValues(filterEmpty);
-    const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
-    const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
-    onChange?.(changedValues, allValues, simpleValues, advancedValues);
-  };
-
-  // 回车搜索
-  const onInternalKeyEnter = (e: any) => {
-    const allValues = mergeSearchValues(filterEmpty);
-    const simpleValues = filterEmpty ? filterEmptyData(simpleForm.getFieldsValue()) : simpleForm.getFieldsValue();
-    const advancedValues = filterEmpty ? filterEmptyData(advancedForm.getFieldsValue()) : advancedForm.getFieldsValue();
-    const currentValues = {};
-    const key = Object.keys(simpleValues).filter(key => key === e.target?.dataset?.name)[0];
-    currentValues[key] = simpleValues[key];
-    if (e.keyCode === 13) {
-      onKeyEnter(currentValues, allValues, simpleValues, advancedValues);
+    // 子元素是数组，表示有多个子元素
+    if (Array.isArray(children)) {
+      children?.forEach((child) => {
+        classify(child);
+      });
     }
+    // 只有一个子元素，就判断是否有data-simple属性，有为快捷搜索，反之为高级搜索
+    if (!Array.isArray(children)) {
+      classify(children);
+    }
+    // 如果元素大于4个，提示信息
+    if (_simpleSearch.length > 4) {
+      message.info('快捷搜索建议控制在4个以内！');
+    }
+    //  如果快捷搜索的长度为0，则打开高级搜索
+    if (_simpleSearch.length === 0) {
+      setIsAdvance(true);
+    }
+    setAdvancedForm(_advancedSearch);
+    setQuickForm(_simpleSearch);
   };
 
   return (
-    <div className={'xdad-advance clearfix'}>
-      <div className="xdad-advance-seach"
-        onKeyDown={onInternalKeyEnter}>
-        <Form
-          layout="inline"
-          form={simpleForm}
-          onValuesChange={onInternalChange}>
-          {searchRender('simple')}
-        </Form>
-        {showAdvanced &&
-          <div
-            className={'xdad-advance-btn'}
-            onClick={() => setIsAdvance(!isAdvance)}>
-          高级搜索
-            {isAdvance ?
-              <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', display: 'inline-block' }} />
-              : <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', transform: 'rotate(180deg)', display: 'inline-block' }} />}
-          </div>}
+    <AdvancedContext.Provider value={store}>
+      <div className={`xdad-advance clearfix ${className}`} style={style}>
+        <div className="xdad-advance-seach">
+          <QuickForm {...formProps} onKeyEnter={onKeyEnter} onChange={onChange} filterEmpty={filterEmpty} {...quickProps}  >
+            {quickForm}
+          </QuickForm>
+          {showAdvanced && (advancedForm.length !== 0) &&
+            <div
+              className={'xdad-advance-btn'}
+              onClick={() => setIsAdvance(!isAdvance)}>
+              高级搜索
+              {isAdvance ?
+                <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', display: 'inline-block' }} />
+                : <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', transform: 'rotate(180deg)', display: 'inline-block' }} />}
+            </div>}
+        </div>
+        {isAdvance && showAdvanced &&
+          <AdvancedForm
+            {...formProps}
+            filterEmpty={filterEmpty}
+            onSearch={onSearch}
+            {...advancedProps}>
+            {advancedForm}
+          </AdvancedForm>}
       </div>
-      {isAdvance && showAdvanced &&
-        <Form
-          form={advancedForm}
-          {...formProps}
-          layout={'inline'}
-          className="xdad-advance-form">
-          {searchRender('advanced')}
-          <span className="xdad-advance-form-btns">
-            <Button onClick={onInternalSearch}>查询</Button>
-            <Button id="xdad-advanced-reset" style={{ marginLeft: 10 }} onClick={() => advancedForm.resetFields()}>重置</Button>
-          </span>
-        </Form>}
-    </div>
+    </AdvancedContext.Provider>
   );
 };
 

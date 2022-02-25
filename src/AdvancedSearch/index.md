@@ -17,6 +17,27 @@ group:
 
 <code src="./demos/index.tsx" />
 
+### 快捷搜索
+当只有快捷搜索时，会自动隐藏高级搜索按钮
+<code src="./demos/quickSearch.tsx" />
+
+### 数据校验
+<code src="./demos/validate.tsx" />
+
+### Group组件
+AdvancedSearch 可以使用Group作为单个表单组件使用，在Group上指定`data-name`同样可以获取到内部的数据；但是由于自动宽度变化默认为`240px`，当使用Group时请根据项目需要指定宽度；当需要改变组件长度时，使用`data-width`手动指定。
+
+<code src="./demos/groupSearch.tsx" />
+
+### 使用Form组件的其他功能
+在`formProps`和`itemprops`属性中，可以传入对应的[`Form`表单](https://ant.design/components/form-cn/#API)的属性，效果相同；
+
+`formProps`对整个组件生效，当指定了子组件的`Form`表单属性后，`formProp`会立即失效；
+
+子组件配置属性与`Form`相同
+****
+<code src="./demos/formProps.tsx" />
+
 ## API
 
 #### AdvancedSearch
@@ -32,17 +53,25 @@ group:
 
 | 属性       | 说明             | 类型                                               | 是否必填 | 默认值 |
 | :--------- | ---------------- | -------------------------------------------------- | -------- | ------ |
-| onChange   | 快捷搜索实时回调 | (currentChange, allValues, simpleValues, advancedValues) => void | N        | -      |
-| onSearch   | 搜索回调         | (allValues, simpleValues, advancedValues) => void                              | N        | -      |
-| onKeyEnter | 快捷搜索回车回调 | (currentChange, allValues, simpleValues, advancedValues) => void                             | N        | -      |
+| onChange   | 快捷搜索实时回调 | (current, allValues, quickValues, advancedValues) => void | N        | -      |
+| onSearch   | 搜索回调         | (allValues, advancedValues，quickValues) => void                              | N        | -      |
+| onKeyEnter | 快捷搜索回车回调 | (current, allValues, quickValues, advancedValues) => void                             | N        | -      |
 | reset | 重置高级搜索数据 | ()=>void     `const {rest} = AdvancedSearch` | N        | -      |
 
+### AdvancedForm&QuickForm
+| 属性       | 说明             | 类型                                               | 是否必填 | 默认值 |
+| :--------- | ---------------- | -------------------------------------------------- | -------- | ------ |
+| reset | 重置高级搜索数据 | ()=>void     `const {rest} = AdvancedSearch` | N        | -      |
+| onChange   | 快捷搜索实时回调 `QuickForm`| (current, allValues, quickValues, advancedValues) => void | N        | -      |
+| onSearch   | 搜索回调 `AdvancedForm`        | (allValues, advancedValues，quickValues) => void                              | N        | -      |
+| onKeyEnter | 快捷搜索回车回调`QuickForm` | (current, allValues, quickValues, advancedValues) => void                             | N        | -      |
 
 
 #### AdvancedSearch Item
 | 属性        | 说明                      | 类型          | 是否必填 | 默认值 |
 | ----------- | ------------------------- | ------------- | -------- | ------ |
-| itemProps   | Form.Item 表单Item API    | FormItemProps | N        | {}     |
-| data-name   | 与Form.Item的name属性一致 | string        | N        | -      |
+| itemprops   | Form.Item 表单Item API    | Formitemprops | N        | {}     |
+| data-width   | 指定子组件宽度 | string|number        | N        | -      |
+| data-name   | 与Form.Item的name属性一致 `在itemprops指定name效果相同` | string        | N        | -      |
 | data-simple | 快捷搜索                  | boolean       | N        | true   |
 
