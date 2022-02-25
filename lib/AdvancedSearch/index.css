@@ -5,7 +5,7 @@
 }
 .xdad-advance .xdad-advance-seach {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .xdad-advance .xdad-advance-seach .xdad-advance-btn {
   margin-bottom: 10px;
