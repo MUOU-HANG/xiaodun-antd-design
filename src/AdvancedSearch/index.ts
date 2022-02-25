@@ -1,4 +1,4 @@
-import InternalAdvancedSearch, { reset } from './AdvancedSearch';
+import InternalAdvancedSearch, { reset } from './advancedSearch';
 import QuickForm from './quickForm';
 import AdvancedForm from './advancedForm';
 

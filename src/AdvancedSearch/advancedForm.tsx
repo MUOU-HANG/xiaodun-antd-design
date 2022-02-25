@@ -1,6 +1,6 @@
 import { Button, Form, FormProps } from 'antd';
 import React, { FC, useContext, useEffect } from 'react';
-import { AdvancedContext } from './AdvancedSearch';
+import { AdvancedContext } from './advancedSearch';
 import { filterEmptyData } from './utils';
 
 type Values = object;
