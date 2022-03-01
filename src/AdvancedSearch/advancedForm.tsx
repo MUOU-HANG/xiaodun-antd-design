@@ -7,9 +7,9 @@ type Values = object;
 
 export interface AdvancedFormProps extends FormProps {
   onSearch?: (allValues: Values, advancedValues: Values, QuickValues: Values) => void
-  filterEmpty: boolean,
+  filterEmpty?: boolean,
   style?: any,
-  className:any,
+  className?:any,
 }
 
 const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,style, className:className1,...rest }) => {

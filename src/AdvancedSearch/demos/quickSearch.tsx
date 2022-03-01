@@ -14,16 +14,12 @@ const SimpleSearch:FC = () => {
       </AdvancedSearch>
       <h2>通过QuickForm方式</h2>
       <AdvancedSearch
-
         onSearch={(value) => {
           console.log(value);
         }} >
         <QuickForm >
           <Input placeholder="快捷搜索示例" data-simple data-name="simple2" />
         </QuickForm>
-        <AdvancedForm style={{backgroundColor:'red'}}>
-          <Input placeholder="快捷搜索示例" data-simple data-name="simple2" />
-        </AdvancedForm>
       </AdvancedSearch>
     </>
   );
