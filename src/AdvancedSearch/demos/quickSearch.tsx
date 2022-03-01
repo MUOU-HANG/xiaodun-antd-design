@@ -1,8 +1,8 @@
 import { Input } from 'antd';
 import React, { FC, memo } from 'react';
 import { AdvancedSearch} from 'xdad';
-const { QuickForm,AdvancedForm } = AdvancedSearch;
-const SimpleSearch:FC = () => {
+const { QuickForm } = AdvancedSearch;
+const QuickSearch:FC = () => {
   return (
     <>
       <h2>通过simple方式</h2>
@@ -26,4 +26,4 @@ const SimpleSearch:FC = () => {
 };
 
 
-export default memo(SimpleSearch);
+export default memo(QuickSearch);
