@@ -3,6 +3,7 @@ import React, { createContext, FC, JSXElementConstructor, ReactElement, useEffec
 import AdvancedForm from './advancedForm';
 import './index.less';
 import QuickForm from './quickForm';
+import ToolBar from './toolBar';
 
 type Values = object;
 
@@ -12,7 +13,7 @@ interface AdvancedSearchProps {
   filterEmpty?: boolean,
   children: any,
   className?: any,
-  style?:any,
+  style?: any,
   reset?: () => void,
   onKeyEnter?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
   onChange?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
@@ -45,6 +46,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   const [advancedForm, setAdvancedForm] = useState<SearchType>([]);
   const [advancedProps, setAdvancedProps] = useState();
   const [quickProps, setQuickProps] = useState();
+  const [toolbar, setToolbar] = useState<SearchType>([]);
   const store = {
     allValues, setAllValues,
     quickValues, setQuickValues,
@@ -60,8 +62,11 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   const classifySearch = () => {
     const _simpleSearch: SearchType = [];
     const _advancedSearch: SearchType = [];
+    const _toolBar: SearchType = [];
+    console.log(children);
+
     // 分类实现
-    const classify = (child:any) => {
+    const classify = (child: any) => {
       const name = child?.type?.name;
       if (name === 'QuickForm') {
         const { children: props_child = [], ...rest } = child?.props || {};
@@ -75,10 +80,16 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
         const advancedPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
         name === 'AdvancedForm' && _advancedSearch.push(...advancedPropsChildren);
       }
-      if (name !== 'QuickForm' && name !== 'AdvancedForm') {
-        child.props['data-simple']
-          ? _simpleSearch.push(child)
-          : _advancedSearch.push(child);
+      if (name === 'ToolBar') {
+        const { children: props_child = [], ...rest } = child?.props || {};
+        // setAdvancedProps(rest);
+        const ToolBarChildren = Array.isArray(props_child) ? props_child : [props_child];
+        name === 'ToolBar' && _toolBar.push(...ToolBarChildren);
+      }
+      if (name !== 'QuickForm' && name !== 'AdvancedForm' && name !== 'ToolBar') {
+        if (child.props['data-simple']) { _simpleSearch.push(child); }
+        else if (child.props['data-toolbar']) { _toolBar.push(child); }
+        else { _advancedSearch.push(child); }
       }
     };
     // 子元素是数组，表示有多个子元素
@@ -99,17 +110,24 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     if (_simpleSearch.length === 0) {
       setIsAdvance(true);
     }
+
     setAdvancedForm(_advancedSearch);
     setQuickForm(_simpleSearch);
+    setToolbar(_toolBar);
   };
 
   return (
     <AdvancedContext.Provider value={store}>
       <div className={`xdad-advance clearfix ${className}`} style={style}>
         <div className="xdad-advance-seach">
-          <QuickForm {...formProps} onKeyEnter={onKeyEnter} onChange={onChange} filterEmpty={filterEmpty} {...quickProps}  >
-            {quickForm}
-          </QuickForm>
+          <div className="xdad-advance-toolbar" style={{width: '100%' }}>
+            <ToolBar>
+              {toolbar}
+            </ToolBar>
+            <QuickForm {...formProps} onKeyEnter={onKeyEnter} onChange={onChange} filterEmpty={filterEmpty} {...quickProps}  >
+              {quickForm}
+            </QuickForm>
+          </div>
           {showAdvanced && (advancedForm.length !== 0) &&
             <div
               className={'xdad-advance-btn'}

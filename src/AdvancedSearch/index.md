@@ -21,6 +21,10 @@ group:
 当只有快捷搜索时，会自动隐藏高级搜索按钮
 <code src="./demos/quickSearch.tsx" />
 
+### 表格操作工具栏
+当需要对表格做一些批量增加、删除等操作且有多个时，可以使用`<ToolBar>`包裹起来，当只有一个时，可以使用`data-toolbar`属性进行设置。`<ToolBar>`目前只作为容器使用，没有任何附加的属性和方法。
+<code src="./demos/toolbar.tsx" />
+
 ### 数据校验
 <code src="./demos/validate.tsx" />
 

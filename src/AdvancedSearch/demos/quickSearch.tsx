@@ -5,7 +5,7 @@ const { QuickForm } = AdvancedSearch;
 const QuickSearch:FC = () => {
   return (
     <>
-      <h2>通过simple方式</h2>
+      <h2>通过data-simple方式</h2>
       <AdvancedSearch
         onSearch={(value) => {
           console.log(value);
