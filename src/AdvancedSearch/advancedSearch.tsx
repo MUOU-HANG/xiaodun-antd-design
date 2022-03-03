@@ -120,7 +120,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     <AdvancedContext.Provider value={store}>
       <div className={`xdad-advance clearfix ${className}`} style={style}>
         <div className="xdad-advance-seach">
-          <div className="xdad-advance-toolbar" style={{width: '100%' }}>
+          <div className="xdad-advance-toolbar" style={{justifyContent:toolbar.length===0?'flex-end':'space-between' }}>
             <ToolBar>
               {toolbar}
             </ToolBar>
