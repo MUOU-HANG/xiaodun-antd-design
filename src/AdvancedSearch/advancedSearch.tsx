@@ -63,7 +63,6 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     const _simpleSearch: SearchType = [];
     const _advancedSearch: SearchType = [];
     const _toolBar: SearchType = [];
-    console.log(children);
 
     // 分类实现
     const classify = (child: any) => {
