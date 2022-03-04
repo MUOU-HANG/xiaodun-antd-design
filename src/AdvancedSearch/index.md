@@ -19,19 +19,19 @@ group:
 
 ### 快捷搜索
 当只有快捷搜索时，会自动隐藏高级搜索按钮
-<code src="./demos/quickSearch.tsx" />
+<!-- <code src="./demos/quickSearch.tsx" /> -->
 
 ### 表格操作工具栏
 当需要对表格做一些批量增加、删除等操作且有多个时，可以使用`<ToolBar>`包裹起来，当只有一个时，可以使用`data-toolbar`属性进行设置。`<ToolBar>`目前只作为容器使用，没有任何附加的属性和方法。
-<code src="./demos/toolbar.tsx" />
+<!-- <code src="./demos/toolbar.tsx" /> -->
 
 ### 数据校验
-<code src="./demos/validate.tsx" />
+<!-- <code src="./demos/validate.tsx" /> -->
 
 ### Group组件
 AdvancedSearch 可以使用Group作为单个表单组件使用，在Group上指定`data-name`同样可以获取到内部的数据；但是由于自动宽度变化默认为`240px`，当使用Group时请根据项目需要指定宽度；当需要改变组件长度时，使用`data-width`手动指定。
 
-<code src="./demos/groupSearch.tsx" />
+<!-- <code src="./demos/groupSearch.tsx" /> -->
 
 ### 使用Form组件的其他功能
 在`formProps`和`itemprops`属性中，可以传入对应的[`Form`表单](https://ant.design/components/form-cn/#API)的属性，效果相同；
@@ -40,7 +40,7 @@ AdvancedSearch 可以使用Group作为单个表单组件使用，在Group上指�
 
 子组件配置属性与`Form`相同
 ****
-<code src="./demos/formProps.tsx" />
+<!-- <code src="./demos/formProps.tsx" /> -->
 
 ## API
 

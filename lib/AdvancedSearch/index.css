@@ -33,7 +33,7 @@
   display: flex;
   width: 100%;
 }
-.xdad-advance .xdad-advance-seach .xdad-advance-toolbar > * {
+.xdad-advance .xdad-advance-seach .xdad-advance-toolbar .xdad-advance-toolbar-item > * {
   margin-right: 10px;
 }
 .xdad-advance .xdad-advance-form {

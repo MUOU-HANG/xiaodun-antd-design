@@ -6,7 +6,7 @@ export interface ToolBarProps{
 
 const ToolBar:FC<ToolBarProps> = ({children}) => {
   return (
-    <span className="xdad-advance-toolbar">{children}</span>
+    <span style={{margin:0,padding:0}} className="xdad-advance-toolbar-item">{children}</span>
   );
 };
 

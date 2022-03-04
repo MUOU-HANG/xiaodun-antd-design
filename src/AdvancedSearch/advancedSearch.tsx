@@ -55,7 +55,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
 
   useEffect(() => {
     classifySearch();
-  }, []);
+  }, [children]);
 
 
   // 搜索分类
@@ -71,6 +71,8 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
         const { children: props_child = [], ...rest } = child?.props || {};
         setQuickProps(rest);
         const propsPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
+        console.log('2323');
+
         _simpleSearch.push(...propsPropsChildren);
       }
       if (name === 'AdvancedForm') {
@@ -80,7 +82,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
         name === 'AdvancedForm' && _advancedSearch.push(...advancedPropsChildren);
       }
       if (name === 'ToolBar') {
-        const { children: props_child = [], ...rest } = child?.props || {};
+        const { children: props_child = [], } = child?.props || {};
         // setAdvancedProps(rest);
         const ToolBarChildren = Array.isArray(props_child) ? props_child : [props_child];
         name === 'ToolBar' && _toolBar.push(...ToolBarChildren);
