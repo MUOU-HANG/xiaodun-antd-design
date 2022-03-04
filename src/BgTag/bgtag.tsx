@@ -11,7 +11,8 @@ const changeHexToRgba = (str: string, alpha: number) => {
   const REGCOLOR = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/;
   const ISRGBA = REGCOLOR.test(str);
   if (ISRGBA === false) {
-    throw Error(`输入的${str}值错误，请输入正确的16进制颜色值`);
+    console.log(`输入的${str}值错误，请输入正确的16进制颜色值`);
+    return `rgba(102,102,102,${alpha})`;
   }
   // 去掉#号
   const colorStr = str.slice(1);

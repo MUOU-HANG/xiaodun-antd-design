@@ -1,11 +1,25 @@
-@import 'https://at.alicdn.com/t/font_3173080_c6j66l1i91t.css';
+@font-face {
+  font-family: "iconfont";
+  /* Project id 3173080 */
+  src: url('//at.alicdn.com/t/font_3173080_c6j66l1i91t.woff2?t=1645497656757') format('woff2'), url('//at.alicdn.com/t/font_3173080_c6j66l1i91t.woff?t=1645497656757') format('woff'), url('//at.alicdn.com/t/font_3173080_c6j66l1i91t.ttf?t=1645497656757') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-advancedsearch:before {
+  content: "\e604";
+}
 .xdad-advance .ant-form-item-label {
   flex: content !important;
   margin-right: 3px;
 }
 .xdad-advance .xdad-advance-seach {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .xdad-advance .xdad-advance-seach .xdad-advance-btn {
   margin-bottom: 10px;
@@ -17,7 +31,7 @@
 }
 .xdad-advance .xdad-advance-seach .xdad-advance-toolbar {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
 }
 .xdad-advance .xdad-advance-form {
   background-color: #F4F5FA;
