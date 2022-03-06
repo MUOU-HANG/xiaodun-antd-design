@@ -6,14 +6,16 @@ export interface ButtonInputProps extends React.ComponentProps<any> {
   text?: string,
   placeholder?: string,
   onKeyEnter?: (value:string) => void,
-  onChange?: ChangeEventHandler<HTMLInputElement>|undefined,
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
+  replace?:React.ReactNode|boolean
 }
 const ButtonInput: FC<ButtonInputProps> = ({
   text = '新增',
   placeholder = '请输入',
   width,
   onKeyEnter,
-  onChange
+  onChange,
+  replace=false
 }) => {
   const [toggleBtn, setToggleBtn] = useState(false);
 
@@ -34,7 +36,11 @@ const ButtonInput: FC<ButtonInputProps> = ({
             onChange={onChange}
             onKeyDown={onInternalKeyEnter}
           />
-          : <Button onClick={() => setToggleBtn(true)}>{text}</Button>
+          : <span onClick={() => setToggleBtn(true)}>
+            {replace
+              ?replace
+              : <Button >{text}</Button>}
+          </span>
       }
     </>
 
