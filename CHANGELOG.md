@@ -1,4 +1,8 @@
-## 1.0.16 (2022-03-07)
+## [1.0.18](https://github.com/MUOU-HANG/xiaodun-antd-design/compare/v1.0.17...v1.0.18) (2022-03-07)
+
+
+
+## [1.0.17](https://github.com/MUOU-HANG/xiaodun-antd-design/compare/fe31e41f06d93bfec2dbab5f42d1081e917124f5...v1.0.17) (2022-03-07)
 
 
 ### Bug Fixes
@@ -14,6 +18,7 @@
 * 项目工程化-commit规范 ([20158c8](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/20158c87b78b07c38f4d3efde6d3328ad96dafdf))
 * 项目工程化-commit规范 ([10dae86](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/10dae86d648ce585299df5842e9aff805ec9a716))
 * 项目工程化-commit规范 ([2f17fd9](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/2f17fd900e18ba49d7989e8e71b97f30f1009270))
+* 自动更新版本号 ([8b542cb](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/8b542cb02384775ec0917683aa4161f26d59a619))
 
 
 
