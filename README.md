@@ -2,9 +2,9 @@
 
 ## Getting Started
 
-How to add components
+### How to add components and publish
 
-Run the script `npm run create <components-name> <file-name>`;
+1. Run the script `npm run create <components-name> <file-name>`;
 
 components-name: The folder name and import/export name （The first letter is capitalized）;
 file-name: src/<components-name>/<file-name>.tsx
@@ -20,20 +20,17 @@ Then you will see this in /src:
     - index.less
     - index.md
 
-```ts
-// ... other components
-export {default as [newcomponents]} from './[newcomponents]';
+2. npm run patch (1.x.0 -> 1.x.1)
 
-```
-1. git push the code
+3. git push the code
 
-2. run npm publish
+4. run npm publish
 
 
 Install dependencies,
 
 ```bash
-$ npm i
+$ npm install
 ```
 
 Start the dev server,

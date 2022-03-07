@@ -1,18 +1,29 @@
 import { Button, Input } from 'antd';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEventHandler, FC, useState } from 'react';
 
 export interface ButtonInputProps extends React.ComponentProps<any> {
   width?: number | string,
+  height?: number | string,
+  block?:boolean,
+  style?: any,
+  size:SizeType,
+  clssName?:string,
   text?: string,
   placeholder?: string,
+  replace?:React.ReactNode|boolean
   onKeyEnter?: (value:string) => void,
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
-  replace?:React.ReactNode|boolean
 }
 const ButtonInput: FC<ButtonInputProps> = ({
   text = '新增',
   placeholder = '请输入',
   width,
+  height,
+  size,
+  block = false,
+  className,
+  style,
   onKeyEnter,
   onChange,
   replace=false
@@ -25,25 +36,22 @@ const ButtonInput: FC<ButtonInputProps> = ({
     }
   };
 
-
   return (
-    <>
-      {
-        toggleBtn
-          ? <Input
-            style={{width}}
-            placeholder={placeholder}
-            onChange={onChange}
-            onKeyDown={onInternalKeyEnter}
-          />
-          : <span onClick={() => setToggleBtn(true)}>
-            {replace
-              ?replace
-              : <Button >{text}</Button>}
-          </span>
-      }
-    </>
-
+    <span style={{width,...style,display:'inline-block'}} className={className}>
+      {toggleBtn
+        ? <Input
+          style={{ height }}
+          size={size}
+          placeholder={placeholder}
+          onChange={onChange}
+          onKeyDown={onInternalKeyEnter}
+        />
+        : <div onClick={() => setToggleBtn(true)} style={block?{width,display:'inline-block'}:undefined}>
+          {replace
+            ?replace
+            : <Button size={size}>{text}</Button>}
+        </div>}
+    </span>
   );
 };
 

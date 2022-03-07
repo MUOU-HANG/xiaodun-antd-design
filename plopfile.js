@@ -35,6 +35,11 @@ module.exports= (plop) => {
         templateFile: 'templates/index.ts',
       },
       {
+        type: 'add',
+        path: 'src/{{name}}/demos/index.tsx',
+        templateFile: 'templates/demos/index.tsx',
+      },
+      {
         type: 'append',
         path: 'src/index.ts',
         pattern: /(\/\/ -- APPEND ITEMS HERE --)/gi,
