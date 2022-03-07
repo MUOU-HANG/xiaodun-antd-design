@@ -42,11 +42,15 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   const [quickValues, setQuickValues] = useState<Values>({});
   const [advancedValues, setAdvancedValues] = useState<Values>({});
   const [isAdvance, setIsAdvance] = useState(false);
+  // ReactNode
   const [quickForm, setQuickForm] = useState<SearchType>([]);
   const [advancedForm, setAdvancedForm] = useState<SearchType>([]);
+  const [toolbar, setToolbar] = useState<SearchType>([]);
+
+  // 属性
   const [advancedProps, setAdvancedProps] = useState();
   const [quickProps, setQuickProps] = useState();
-  const [toolbar, setToolbar] = useState<SearchType>([]);
+
   const store = {
     allValues, setAllValues,
     quickValues, setQuickValues,
@@ -57,42 +61,41 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     classifySearch();
   }, [children]);
 
+  type setFunction = ((value:React.SetStateAction<undefined>) => void)
 
   // 搜索分类
   const classifySearch = () => {
     const _simpleSearch: SearchType = [];
     const _advancedSearch: SearchType = [];
     const _toolBar: SearchType = [];
+    const NALE_LIST = ['QuickForm', 'AdvancedForm', 'ToolBar'];
 
-    // 分类实现
+    // 处理分类
+    const setSeatchClassify = (child: any, set: setFunction, array: SearchType) => {
+      const { children: props_child = [], ...rest } = child?.props || {};
+      set(rest);
+      // 获取属性
+      const propsPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
+      array.push(...propsPropsChildren);
+    };
+
+    // 分类判断：判断快捷搜索/高级搜索/工具栏
     const classify = (child: any) => {
       const name = child?.type?.name;
       if (name === 'QuickForm') {
-        const { children: props_child = [], ...rest } = child?.props || {};
-        setQuickProps(rest);
-        const propsPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
-        console.log('2323');
-
-        _simpleSearch.push(...propsPropsChildren);
-      }
+        setSeatchClassify(child, setQuickProps, _simpleSearch);}
       if (name === 'AdvancedForm') {
-        const { children: props_child = [], ...rest } = child?.props || {};
-        setAdvancedProps(rest);
-        const advancedPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
-        name === 'AdvancedForm' && _advancedSearch.push(...advancedPropsChildren);
-      }
+        setSeatchClassify(child, setAdvancedProps, _advancedSearch);  }
       if (name === 'ToolBar') {
-        const { children: props_child = [], } = child?.props || {};
-        // setAdvancedProps(rest);
-        const ToolBarChildren = Array.isArray(props_child) ? props_child : [props_child];
-        name === 'ToolBar' && _toolBar.push(...ToolBarChildren);
+        setSeatchClassify(child, setAdvancedProps, _toolBar);
       }
-      if (name !== 'QuickForm' && name !== 'AdvancedForm' && name !== 'ToolBar') {
+      if (!NALE_LIST.includes(name)) {
         if (child.props['data-simple']) { _simpleSearch.push(child); }
         else if (child.props['data-toolbar']) { _toolBar.push(child); }
         else { _advancedSearch.push(child); }
       }
     };
+
     // 子元素是数组，表示有多个子元素
     if (Array.isArray(children)) {
       children?.forEach((child) => {

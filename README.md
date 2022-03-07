@@ -4,18 +4,30 @@
 
 How to add components
 
-1. Add files: index.ts index.less [components-name].tsx demos/index.md
+Run the script `npm run create <components-name> <file-name>`;
 
-2. Modify the src/index.ts
+components-name: The folder name and import/export name;
+file-name: src/<components-name>/<file-name>.tsx
+
+eg: `npm run plop Test test`
+
+Then you will see this in /src:
+
+- src
+  - Test
+    - test.tsx
+    - index.ts
+    - index.less
+    - index.md
 
 ```ts
 // ... other components
 export {default as [newcomponents]} from './[newcomponents]';
 
 ```
-3. git push the code
+1. git push the code
 
-4. run npm publish
+2. run npm publish
 
 
 Install dependencies,

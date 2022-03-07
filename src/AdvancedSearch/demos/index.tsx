@@ -31,8 +31,6 @@ const Index = () => {
 
   return (
     <>
-      {console.log(data)
-      }
       <AdvancedSearch
         onSearch={(a, b, c) => {
           console.log('search:', a, b, c);
