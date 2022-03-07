@@ -8,3 +8,6 @@ tsconfig.json
 .prettierignore
 .prettierrc.js
 typings.d.ts
+commitlint.config.ts
+plopfile.ts
+templates

@@ -6,7 +6,7 @@ How to add components
 
 Run the script `npm run create <components-name> <file-name>`;
 
-components-name: The folder name and import/export name;
+components-name: The folder name and import/export name （The first letter is capitalized）;
 file-name: src/<components-name>/<file-name>.tsx
 
 eg: `npm run plop Test test`

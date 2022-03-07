@@ -11,6 +11,7 @@
 
 * 高级搜索增加工具栏 ([392dc07](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/392dc07cd897f731c1c33030640b3711cd9a2d56))
 * 高级搜索增加工具栏 ([d3754f1](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/d3754f106ab14d7be8b5c03785889db76d91d83f))
+* 项目工程化-commit规范 ([2f17fd9](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/2f17fd900e18ba49d7989e8e71b97f30f1009270))
 
 
 
