@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 module.exports= (plop) => {
   plop.setGenerator('src', {
     description: '生成组件',
