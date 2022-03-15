@@ -68,7 +68,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     const _simpleSearch: SearchType = [];
     const _advancedSearch: SearchType = [];
     const _toolBar: SearchType = [];
-    const NALE_LIST = ['QuickForm', 'AdvancedForm', 'ToolBar'];
+    const NAME_LIST = ['QuickForm', 'AdvancedForm', 'ToolBar'];
 
     // 处理分类
     const setSeatchClassify = (child: any, set: setFunction, array: SearchType) => {
@@ -89,7 +89,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
       if (name === 'ToolBar') {
         setSeatchClassify(child, setAdvancedProps, _toolBar);
       }
-      if (!NALE_LIST.includes(name)) {
+      if (!NAME_LIST.includes(name)) {
         if (child.props['data-simple']) { _simpleSearch.push(child); }
         else if (child.props['data-toolbar']) { _toolBar.push(child); }
         else { _advancedSearch.push(child); }
