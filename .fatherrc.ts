@@ -1,14 +1,14 @@
 export default {
   esm: 'babel', // 通过 babel 编译相关组件即可，而无需打包在一个文件中，实现在使用时可按需加载。
   cjs: 'babel',
-  // umd: {
-  //   name: 'xdad',
-  //   sourcemap: true,
-  //   globals: {
-  //     react: 'React',
-  //     antd: 'antd'
-  //   },
-  // },
+  umd: {
+    name: 'xdad',
+    sourcemap: true,
+    globals: {
+      react: 'React',
+      antd: 'antd'
+    },
+  },
   entry:"src/index.ts",
   lessInBabelMode: true, // less 转 css
   cssModules: false, // 开始cssModule功能
