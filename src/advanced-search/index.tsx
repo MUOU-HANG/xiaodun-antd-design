@@ -1,8 +1,8 @@
 import { FormProps, message } from 'antd';
 import React, { createContext, FC, JSXElementConstructor, ReactElement, useEffect, useState } from 'react';
-import AdvancedForm from './advancedForm';
-import QuickForm from './quickForm';
-import ToolBar from './toolBar';
+import AdvancedForm from './AdvancedForm';
+import QuickForm from './QuickForm';
+import ToolBar from './ToolBar';
 import './style/index.less';
 type Values = object;
 

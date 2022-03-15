@@ -1,7 +1,7 @@
 import { FormProps } from 'antd';
-import AdvancedForm from './advancedForm';
-import QuickForm from './quickForm';
-import ToolBar from './toolBar';
+import AdvancedForm from './AdvancedForm';
+import QuickForm from './QuickForm';
+import ToolBar from './ToolBar';
 import './style/index.less';
 declare type Values = object;
 export interface AdvancedSearchProps {
