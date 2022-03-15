@@ -3044,7 +3044,7 @@
   };
   var AdvancedContext = /*#__PURE__*/react.createContext({});
 
-  var AdvancedSearch = function AdvancedSearch(_ref) {
+  var AdvancedSearchBody = function AdvancedSearchBody(_ref) {
     var children = _ref.children,
         _ref$showAdvanced = _ref.showAdvanced,
         showAdvanced = _ref$showAdvanced === void 0 ? true : _ref$showAdvanced,
@@ -3119,8 +3119,7 @@
     var classifySearch = function classifySearch() {
       var _simpleSearch = [];
       var _advancedSearch = [];
-      var _toolBar = [];
-      var NAME_LIST = ['QuickForm', 'AdvancedForm', 'ToolBar']; // 处理分类
+      var _toolBar = []; // 处理分类
 
       var setSeatchClassify = function setSeatchClassify(child, set, array) {
         var _ref2 = (child === null || child === void 0 ? void 0 : child.props) || {},
@@ -3135,46 +3134,36 @@
       }; // 分类判断：判断快捷搜索/高级搜索/工具栏
 
 
-      var classify = function classify(child) {
-        var _child$type;
-
-        var name = child === null || child === void 0 ? void 0 : (_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.name;
-
-        if (name === 'QuickForm') {
-          setSeatchClassify(child, setQuickProps, _simpleSearch);
+      react.Children.forEach(children, function (element) {
+        if ((element === null || element === void 0 ? void 0 : element.type) === QuickForm) {
+          setSeatchClassify(element, setQuickProps, _simpleSearch);
+          return;
         }
 
-        if (name === 'AdvancedForm') {
-          setSeatchClassify(child, setAdvancedProps, _advancedSearch);
+        if ((element === null || element === void 0 ? void 0 : element.type) === AdvancedForm) {
+          setSeatchClassify(element, setAdvancedProps, _advancedSearch);
+          return;
         }
 
-        if (name === 'ToolBar') {
-          setSeatchClassify(child, setAdvancedProps, _toolBar);
+        if ((element === null || element === void 0 ? void 0 : element.type) === ToolBar) {
+          setSeatchClassify(element, setAdvancedProps, _toolBar);
+          return;
         }
 
-        if (!NAME_LIST.includes(name)) {
-          if (child.props['data-simple']) {
-            _simpleSearch.push(child);
-          } else if (child.props['data-toolbar']) {
-            _toolBar.push(child);
-          } else {
-            _advancedSearch.push(child);
-          }
+        if (element.props['data-simple']) {
+          _simpleSearch.push(element);
+
+          return;
         }
-      }; // 子元素是数组，表示有多个子元素
 
+        if (element.props['data-toolbar']) {
+          _toolBar.push(element);
 
-      if (Array.isArray(children)) {
-        children === null || children === void 0 ? void 0 : children.forEach(function (child) {
-          classify(child);
-        });
-      } // 只有一个子元素，就判断是否有data-simple属性，有为快捷搜索，反之为高级搜索
+          return;
+        }
 
-
-      if (!Array.isArray(children)) {
-        classify(children);
-      } // 如果元素大于4个，提示信息
-
+        _advancedSearch.push(element);
+      }); // 如果元素大于4个，提示信息
 
       if (_simpleSearch.length > 4) {
         _message__default['default'].info('快捷搜索建议控制在4个以内！');
@@ -3232,11 +3221,11 @@
     }, advancedProps), advancedForm)));
   };
 
-  var AdvancedSearch$1 = AdvancedSearch;
-  AdvancedSearch$1.reset = reset;
-  AdvancedSearch$1.QuickForm = QuickForm;
-  AdvancedSearch$1.AdvancedForm = AdvancedForm;
-  AdvancedSearch$1.ToolBar = ToolBar;
+  var AdvancedSearch = AdvancedSearchBody;
+  AdvancedSearch.reset = reset;
+  AdvancedSearch.QuickForm = QuickForm;
+  AdvancedSearch.AdvancedForm = AdvancedForm;
+  AdvancedSearch.ToolBar = ToolBar;
 
   var _excluded$4 = ["columns", "dataSource", "firstRun", "url", "queryParams", "format", "pagination", "onPageChange"];
 
@@ -3380,7 +3369,7 @@
     }));
   };
 
-  var BasicTable$1 = /*#__PURE__*/react.memo(BasicTable);
+  var index = /*#__PURE__*/react.memo(BasicTable);
 
   var _excluded$5 = ["onResize", "width"];
   var reactResizableHandle = {
@@ -3551,8 +3540,8 @@
     }, text)));
   };
 
-  exports.AdvancedSearch = AdvancedSearch$1;
-  exports.BasicTable = BasicTable$1;
+  exports.AdvancedSearch = AdvancedSearch;
+  exports.BasicTable = index;
   exports.BgTag = Tag;
   exports.ButtonInput = ButtonInput;
   exports.CountDownButton = CountdownButton;

@@ -21,7 +21,12 @@
     },
     "module": "es/index.js",
     "main": "lib/index.js",
-    "sideEffects": [],
+    "sideEffects": [
+        "dist/*",
+        "es/**/style/*",
+        "lib/**/style/*",
+        "*.less"
+    ],
     "typings": "es/index.d.ts",
     "gitHooks": {
         "pre-commit": "lint-staged"
