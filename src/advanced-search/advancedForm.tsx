@@ -1,6 +1,6 @@
 import { Button, Form, FormProps } from 'antd';
 import React, { FC, useContext, useEffect } from 'react';
-import { AdvancedContext } from '.';
+import { AdvancedContext } from './AdvancedSearch';
 import { filterEmptyData } from './utils';
 
 type Values = object;
@@ -71,6 +71,5 @@ const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,st
     </Form>
   );
 };
-
 
 export default AdvancedForm;

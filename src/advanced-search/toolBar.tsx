@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 export interface ToolBarProps{
-  children: any;
+  [key:string]:any
 }
 
 const ToolBar:FC<ToolBarProps> = ({children}) => {

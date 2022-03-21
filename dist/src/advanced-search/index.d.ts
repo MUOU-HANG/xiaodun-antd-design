@@ -1,27 +1,14 @@
-import { FormProps } from 'antd';
-import AdvancedForm from './AdvancedForm';
-import QuickForm from './QuickForm';
-import ToolBar from './ToolBar';
-import './style/index.less';
-declare type Values = object;
-export interface AdvancedSearchProps {
-    formProps?: FormProps;
-    showAdvanced?: boolean;
-    filterEmpty?: boolean;
-    children: any;
-    className?: any;
-    style?: any;
-    onKeyEnter?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
-    onChange?: (currentChange: Values, allValues: Values, simpleValues: Values, advancedValues: Values) => void;
-    onSearch?: (allValues: Values, simpleValues: Values, advancedValues: Values) => void;
+import InternalAdvancedSearch, { reset } from './AdvancedSearch';
+import QuickForm, { QuickFormProps } from './QuickForm';
+import AdvancedForm, { AdvancedFormProps } from './AdvancedForm';
+import ToolBar, { ToolBarProps } from './ToolBar';
+declare type InternalAdvancedSearchType = typeof InternalAdvancedSearch;
+interface AdvancedSearchInterface extends InternalAdvancedSearchType {
+    QuickForm: typeof QuickForm;
+    AdvancedForm: typeof AdvancedForm;
+    ToolBar: typeof ToolBar;
+    reset: typeof reset;
 }
-export interface AdvancedSearchInterface extends AdvancedSearchProps {
-    QuickForm?: typeof QuickForm;
-    AdvancedForm?: typeof AdvancedForm;
-    ToolBar?: typeof ToolBar;
-    reset?: () => void;
-}
-export declare const reset: () => void;
-export declare const AdvancedContext: any;
 declare const AdvancedSearch: AdvancedSearchInterface;
+export { AdvancedFormProps, QuickFormProps, ToolBarProps };
 export default AdvancedSearch;

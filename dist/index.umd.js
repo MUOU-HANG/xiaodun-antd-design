@@ -3044,7 +3044,7 @@
   };
   var AdvancedContext = /*#__PURE__*/react.createContext({});
 
-  var AdvancedSearchBody = function AdvancedSearchBody(_ref) {
+  var AdvancedSearch = function AdvancedSearch(_ref) {
     var children = _ref.children,
         _ref$showAdvanced = _ref.showAdvanced,
         showAdvanced = _ref$showAdvanced === void 0 ? true : _ref$showAdvanced,
@@ -3221,11 +3221,11 @@
     }, advancedProps), advancedForm)));
   };
 
-  var AdvancedSearch = AdvancedSearchBody;
-  AdvancedSearch.reset = reset;
-  AdvancedSearch.QuickForm = QuickForm;
-  AdvancedSearch.AdvancedForm = AdvancedForm;
-  AdvancedSearch.ToolBar = ToolBar;
+  var AdvancedSearch$1 = AdvancedSearch;
+  AdvancedSearch$1.QuickForm = QuickForm;
+  AdvancedSearch$1.AdvancedForm = AdvancedForm;
+  AdvancedSearch$1.ToolBar = ToolBar;
+  AdvancedSearch$1.reset = reset;
 
   var _excluded$4 = ["columns", "dataSource", "firstRun", "url", "queryParams", "format", "pagination", "onPageChange"];
 
@@ -3540,7 +3540,7 @@
     }, text)));
   };
 
-  exports.AdvancedSearch = AdvancedSearch;
+  exports.AdvancedSearch = AdvancedSearch$1;
   exports.BasicTable = index;
   exports.BgTag = Tag;
   exports.ButtonInput = ButtonInput;

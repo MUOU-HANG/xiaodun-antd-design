@@ -16,17 +16,12 @@ module.exports= (plop) => {
     actions: [
       {
         type: 'add',
-        path: 'src/{{name}}/index.less',
-        templateFile: 'templates/index.less',
-      },
-      {
-        type: 'add',
         path: 'src/{{name}}/index.md',
         templateFile: 'templates/index.md',
       },
       {
         type: 'add',
-        path: 'src/{{name}}/{{file}}.tsx',
+        path: 'src/{{name}}/index.tsx',
         templateFile: 'templates/index.tsx',
       },
       {
@@ -38,6 +33,10 @@ module.exports= (plop) => {
         type: 'add',
         path: 'src/{{name}}/demos/index.tsx',
         templateFile: 'templates/demos/index.tsx',
+      },
+      {
+        type: 'add',
+        path: 'src/{{name}}/styles/index.less',
       },
       {
         type: 'append',

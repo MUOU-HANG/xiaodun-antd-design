@@ -1,11 +1,11 @@
 import { Form } from 'antd';
 import React, { FC, useContext, useEffect } from 'react';
-import { AdvancedContext } from '.';
+import { AdvancedContext } from './AdvancedSearch';
 import { filterEmptyData } from './utils';
 
 type Values = object
 
-export interface QuickFromProps {
+export interface QuickFormProps {
   filterEmpty?: boolean,
   style?: any,
   className?:any,
@@ -13,7 +13,7 @@ export interface QuickFromProps {
   onKeyEnter?: (current:Values,allValues:Values,quickValues:Values,advancedValues:Values) => void
 }
 
-const QuickForm: FC<QuickFromProps> = ({ children, onChange,filterEmpty, onKeyEnter,...rest }) => {
+const QuickForm: FC<QuickFormProps> = ({ children, onChange,filterEmpty, onKeyEnter,...rest }) => {
   const {setAllValues,allValues,advancedValues,setQuickValues} = useContext(AdvancedContext);
   const [form] = Form.useForm();
 
