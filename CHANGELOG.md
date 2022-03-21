@@ -1,4 +1,4 @@
-## [1.0.21](https://github.com/MUOU-HANG/xiaodun-antd-design/compare/v1.0.18...v1.0.21) (2022-03-15)
+## [1.0.25](https://github.com/MUOU-HANG/xiaodun-antd-design/compare/v1.0.18...v1.0.25) (2022-03-21)
 
 
 ### Bug Fixes
@@ -14,6 +14,7 @@
 * 去除副作用 ([eee030d](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/eee030dcc712ba4d50965c0d7ca6d400c6c0c1c0))
 * 新增ButtonInput组件 ([065840b](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/065840bfba718791e0b533e98b19c8db2c3b679f))
 * 优化 ([307b3e6](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/307b3e615f095dd7f76c72ef3d0d5561ca85992a))
+* build ([514d84f](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/514d84f5355e3bd7432c52cd91c34ca0aba52d68))
 * npm版本自动升级 ([c8e75ad](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/c8e75addf89ba5d511a056e1f2fabca7ce293bbd))
 
 
