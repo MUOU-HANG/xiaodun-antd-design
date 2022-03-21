@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { {{ name }} } from 'xdad';
+import { {{ file }} } from 'xdad';
 
-const {{name}}Demo:FC = () => {
+const {{file}}Demo:FC = () => {
   return (
-    <{{name}} />
+    <{{file}} />
   );
 };
 
 
-export default {{name}}Demo;
+export default {{file}}Demo;

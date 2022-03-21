@@ -1,8 +1,8 @@
 import React,{ FC } from 'react';
 
-const {{name}}:FC = () => {
-  return <div>{{name}}</div>;
+const {{file}}:FC = () => {
+  return <div>{{file}}</div>;
 };
 
 
-export default {{name}};
+export default {{file}};

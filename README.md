@@ -4,22 +4,22 @@
 
 ### How to add components and publish
 
-1. Run the script `npm run plop <components-name> <file-name>`;
+1. Run the script `npm run plop <folder-name> <components-name>`;
 
-components-name: The folder name and import/export name （The first letter is capitalized）;
-file-name: src/<components-name>/<file-name>.tsx
+folder-name: src/<folder-name>/index.tsx
+components-name: The components name and import/export name （The first letter is capitalized）;
 
-eg: `npm run plop Test test`
+eg: `npm run plop test-app TestApp`
 
 Then you will see this in /src:
 
 - src
-  - Test
+  - test-app
     - style
       - index.less
     - demos
       - index.tsx
-    - test.tsx
+    - test.tsx (const TestApp = ()=>{return ()})
     - index.md
 
 1. npm run patch (1.x.0 -> 1.x.1)
