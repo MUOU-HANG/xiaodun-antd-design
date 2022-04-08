@@ -5,14 +5,15 @@ import { filterEmptyData } from './utils';
 
 type Values = object;
 
-export interface AdvancedFormProps extends FormProps {
+interface AdvancedFormProps extends FormProps {
   onSearch?: (allValues: Values, advancedValues: Values, QuickValues: Values) => void
   filterEmpty?: boolean,
   style?: any,
-  className?:any,
+  className?: any,
 }
+export { AdvancedFormProps };
 
-const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,style, className:className1,...rest }) => {
+const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch, filterEmpty, style, className: className1, ...rest }) => {
   const { setAllValues, allValues, quickValues, setAdvancedValues } = useContext(AdvancedContext);
   const [form] = Form.useForm();
 
@@ -29,7 +30,7 @@ const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,st
           key={name ?? index}
           name={name}
           {...itemprops}
-          style={{ width: width ? width : (isSelect ? '160px' : '240px') ,...style}}
+          style={{ width: width ? width : (isSelect ? '160px' : '240px'), ...style }}
           className="xdad-advance-form-item"
         >
           {child}
@@ -50,8 +51,8 @@ const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,st
     setAllValues(_allValues);
     setAdvancedValues(values);
     onSearch?.(
-      filterEmpty ? filterEmptyData(_allValues):_allValues,
-      filterEmpty ? filterEmptyData(values):values,
+      filterEmpty ? filterEmptyData(_allValues) : _allValues,
+      filterEmpty ? filterEmptyData(values) : values,
       filterEmpty ? filterEmptyData(quickValues) : quickValues
     );
   };
@@ -65,8 +66,8 @@ const AdvancedForm: FC<AdvancedFormProps> = ({ children, onSearch,filterEmpty,st
     >
       {advancedFormRender}
       <Form.Item className="xdad-advance-form-btns">
-        <Button onClick={onInternalSearch} htmlType='submit'>查询</Button>
-        <Button id="xdad-advanced-reset" style={{ marginLeft: 10 }} onClick={() => form.resetFields()}>重置</Button>
+        <Button id="xdad-advanced-search" onClick={onInternalSearch} htmlType='submit'>查询</Button>
+        <Button id="xdad-advanced-reset" style={{ marginLeft: 10 }} onClick={() => { form.resetFields(), onInternalSearch(); }}>重置</Button>
       </Form.Item>
     </Form>
   );

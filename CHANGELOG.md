@@ -16,6 +16,7 @@
 * 优化 ([307b3e6](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/307b3e615f095dd7f76c72ef3d0d5561ca85992a))
 * 优化模板生成 ([882e7a7](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/882e7a76ea0e88e9897495647a4253c90fa23cb6))
 * build ([514d84f](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/514d84f5355e3bd7432c52cd91c34ca0aba52d68))
+* new branch ([6978545](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/6978545c49f2e8b639e31126edf0a6d3c2edc932))
 * npm版本自动升级 ([c8e75ad](https://github.com/MUOU-HANG/xiaodun-antd-design/commit/c8e75addf89ba5d511a056e1f2fabca7ce293bbd))
 
 

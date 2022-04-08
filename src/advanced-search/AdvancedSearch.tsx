@@ -1,5 +1,5 @@
 import { FormProps, message } from 'antd';
-import React, { createContext, FC, JSXElementConstructor, ReactElement, useEffect, useState } from 'react';
+import React, { createContext, FC, JSXElementConstructor, ReactElement, useEffect, useMemo, useState } from 'react';
 import AdvancedForm from './AdvancedForm';
 import QuickForm from './QuickForm';
 import ToolBar from './ToolBar';
@@ -9,6 +9,7 @@ type Values = object;
 export interface AdvancedSearchProps {
   formProps?: FormProps
   showAdvanced?: boolean,
+  closeAdvanced?: boolean,
   filterEmpty?: boolean,
   children: any,
   className?: any,
@@ -31,6 +32,7 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   filterEmpty = true,
   style,
   className,
+  closeAdvanced=false,
   formProps,
   onSearch,
   onChange,
@@ -40,7 +42,8 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   const [allValues, setAllValues] = useState<Values>({});
   const [quickValues, setQuickValues] = useState<Values>({});
   const [advancedValues, setAdvancedValues] = useState<Values>({});
-  const [isAdvance, setIsAdvance] = useState(false);
+  const [isAdvance, setIsAdvance] = useState(!closeAdvanced);
+
   // ReactNode
   const [quickForm, setQuickForm] = useState<SearchType>([]);
   const [advancedForm, setAdvancedForm] = useState<SearchType>([]);
@@ -57,8 +60,17 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
   };
 
   useEffect(() => {
+    console.log(333);
+
     classifySearch();
-  }, [children]);
+  }, [children,formProps]);
+
+
+  // 如果设置了收起高级搜索，则设置高级搜索，反之就默认收起
+  useEffect(() => {
+    setIsAdvance(closeAdvanced?!closeAdvanced:false);
+  }, [closeAdvanced]);
+
 
   type setFunction = ((value: React.SetStateAction<undefined>) => void)
 
@@ -71,6 +83,8 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
     // 处理分类
     const setSeatchClassify = (child: any, set: setFunction, array: SearchType) => {
       const { children: props_child = [], ...rest } = child?.props || {};
+      console.log(rest);
+
       set(rest);
       // 获取属性
       const propsPropsChildren = Array.isArray(props_child) ? props_child : [props_child];
@@ -130,14 +144,14 @@ const AdvancedSearch: FC<AdvancedSearchProps> = ({
           {showAdvanced && (advancedForm.length !== 0) &&
             <div
               className={'xdad-advance-btn'}
-              onClick={() => setIsAdvance(!isAdvance)}>
+              onClick={() =>setIsAdvance(!isAdvance)}>
               高级搜索
               {isAdvance ?
                 <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', display: 'inline-block' }} />
                 : <i className="iconfont icon-advancedsearch" style={{ fontSize: '14px', marginLeft: '10px', transform: 'rotate(180deg)', display: 'inline-block' }} />}
             </div>}
         </div>
-        {isAdvance && showAdvanced &&
+        {(isAdvance && showAdvanced) &&
           <AdvancedForm
             {...formProps}
             filterEmpty={filterEmpty}
